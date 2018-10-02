@@ -1,0 +1,34 @@
+{
+  "name": "github-pages-tags",
+  "version": "1.0.0",
+  "description": "A package to generate tags pages to github pages website",
+  "scripts": {
+    "postinstall": "node install.js",
+    "start": "webpack --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/moshfeu/github-pages-tags.git"
+  },
+  "keywords": [
+    "npm",
+    "github-pages",
+    "tags"
+  ],
+  "author": "MosheF",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/moshfeu/github-pages-tags/issues"
+  },
+  "homepage": "https://github.com/moshfeu/github-pages-tags#readme",
+  "dependencies": {
+    "pre-commit": "^1.2.2"
+  },
+  "devDependencies": {
+    "@types/node": "^10.11.3",
+    "ts-loader": "^5.2.1",
+    "typescript": "^3.1.1",
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.2"
+  }
+}
