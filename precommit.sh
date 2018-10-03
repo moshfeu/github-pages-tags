@@ -14,7 +14,7 @@ do
           tag=${tag/[};
           tag=${tag/]};
 
-          if ! [[ ${TAGS[*]} =~ ${tag} ]]
+          if ! containsElement tag "${TAGS[@]}";
             then
               # echo "not contains: ${tag}";
               TAGS+=(${tag});
@@ -43,3 +43,10 @@ git add -- ./tags
 # print array
 # printf '%s\n' "${TAGS[@]}"
 # exit 1;
+
+containsElement () {
+  local e match="$1"
+  shift
+  for e; do [[ "$e" == "$match" ]] && return 0; done
+  return 1
+}
