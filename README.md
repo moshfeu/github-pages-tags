@@ -18,7 +18,13 @@ This script is reading all the tags in the site and generate a `.md` file for ea
 
 ## Installation
 
+#### Step 1
+
 ```shell
 npm install github-pages-tags --save
 ```
+
+#### Step 2
+
+create a _tag.html_ in __layout_ folder which will be the tag template
 
