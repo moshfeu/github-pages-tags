@@ -22,9 +22,11 @@
   },
   "homepage": "https://github.com/moshfeu/github-pages-tags#readme",
   "dependencies": {
+    "find": "^0.2.9",
     "pre-commit": "^1.2.2"
   },
   "devDependencies": {
+    "@types/find": "^0.2.1",
     "@types/node": "^10.11.3",
     "ts-loader": "^5.2.1",
     "typescript": "^3.1.1",

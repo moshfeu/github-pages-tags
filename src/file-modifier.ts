@@ -17,7 +17,7 @@ export const addProps = (packageJson: IPackageJSON): void => {
     packageJson.scripts = {};
   }
 
-  packageJson.scripts['generate-tags'] = `sh node_modules/github-pages-tags/precommit.sh`;
+  packageJson.scripts['generate-tags'] = `node node_modules/github-pages-tags/precommit.js`;
 }
 
 export const save = (packageJson: IPackageJSON): void => {
