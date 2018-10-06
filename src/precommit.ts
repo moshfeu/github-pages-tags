@@ -1,11 +1,17 @@
 import { file } from 'find';
 import { readFileSync, existsSync, mkdirSync, writeFileSync } from 'fs';
 import { exec } from 'child_process';
-const pj = eval('require')('../../github-pages-tags.config') as {title: string, description: string};
+let pj: {title?: string, description?: string};
+
+try {
+  pj = eval('require')('../../github-pages-tags.config');
+} catch (error) {
+  pj = {};
+}
 
 const tagsDir = './tags';
 const template = `---
-title: ${pj.title || '{{tag}}}'}
+title: ${pj.title || '{{tag}}'}
 description: ${pj.description || 'Here are all the posts that related to {{tag}}'}
 layout: tag
 permalink: /tags/{{tag}}/
