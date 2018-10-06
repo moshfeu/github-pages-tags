@@ -39,5 +39,5 @@ module.exports = {
 }
 ```
 
-`{{tag}}` will be replace by the actuall tag.
+`{{tag}}` will be replaced by the actuall tag.
 These are the default values of these properties, if you will skip this step.
