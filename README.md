@@ -28,3 +28,16 @@ npm install github-pages-tags --save
 
 create a _tag.html_ in __layout_ folder which will be the tag template
 
+#### Step 3 (optinal)
+
+You can define the tag page **title** and the **description** by creating a file `github-pages-tags.config.js` and set its content
+
+```javascript
+module.exports = {
+  title: '{{tag}}}',
+  description: 'Here are all the posts that related to {{tag}}'
+}
+```
+
+`{{tag}}` will be replace by the actuall tag.
+These are the default values of these properties, if you will skip this step.
