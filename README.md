@@ -6,9 +6,9 @@
 
 ## Introduction
 You are display tags list on each post in your github pages website and this is good.<br />
-But, usually, you want that those tags will be links to a tag page which will display all the post
+But, usually, you want that those tags will be links to a tag page which will display all the posts
 which contains the tag, right?<br />
-The problem is that jekyll is a static "language" so you have to generate each page as static files.<br />
+The problem is that `jekyll` is a static "language" so you have to generate each page as static file.<br />
 Will you do this manually? I don't think so.
 
 ## How it works?
