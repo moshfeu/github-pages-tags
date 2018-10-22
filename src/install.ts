@@ -1,4 +1,3 @@
-import * as fs from 'fs';
 import {IPackageJSON} from './types';
 import { read, addProps, save } from './file-modifier';
 
