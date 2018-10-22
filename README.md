@@ -26,7 +26,24 @@ npm install github-pages-tags --save
 
 #### Step 2
 
-create a _tag.html_ in __layout_ folder which will be the tag template
+create a _tag.html_ in _layout_ folder which will be the tag template.
+This file should looks like:
+
+```ruby
+---
+layout: default
+---
+
+<h1>`{{ page.title }}` posts</h1>
+
+<div class="view">
+  {% for post in site.posts %}
+    {% if post.tags contains page.title %}
+      {% include post-item.html post=post last=forloop.last %}
+    {% endif %}
+  {% endfor %}
+</div>
+```
 
 #### Step 3 (optinal)
 
