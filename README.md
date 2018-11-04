@@ -47,14 +47,21 @@ layout: default
 
 #### Step 3 (optinal)
 
-You can define the tag page **title** and the **description** by creating a file `github-pages-tags.config.js` and set its content
+You can custom the plugin behavior by creating ~~`github-pages-tags.config.js`~~ `github-pages-tags.config.json`.
 
-```javascript
-module.exports = {
-  title: '{{tag}}}',
-  description: 'Here are all the posts that related to {{tag}}'
+Here is the options:
+
+```json
+{
+  // tag page title
+  "title": "{{tag}}}",
+  // tag page meta description
+  "description": "Here are all the posts that related to {{tag}}",
+  // generate only tag who have more than `minPostCount` posts. See link below:
+  "minPostCount": 0
 }
 ```
 
-`{{tag}}` will be replaced by the actuall tag.
-These are the default values of these properties, if you will skip this step.
+### Notes
+- `{{tag}}` will be replaced by the actuall tag name.
+- `minPostCount` - (<a href="https://savyagency.com/tags-and-categories-create-duplicate-content/" target="_blank">Why is good?</a>)
