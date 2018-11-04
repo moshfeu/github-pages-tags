@@ -51,7 +51,7 @@ You can custom the plugin behavior by creating ~~`github-pages-tags.config.js`~~
 
 Here is the options:
 
-```json
+```js
 {
   // tag page title
   "title": "{{tag}}}",
