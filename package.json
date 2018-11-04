@@ -1,10 +1,10 @@
 {
   "name": "github-pages-tags",
-  "version": "1.1.3",
+  "version": "1.1.6",
   "description": "A package to generate tags pages to github pages website",
   "scripts": {
     "postinstall": "node install.js",
-    "start": "webpack --watch",
+    "start": "webpack --watch --watch-poll",
     "test": "jest"
   },
   "repository": {
@@ -47,5 +47,9 @@
       "tsx",
       "js"
     ]
-  }
+  },
+  "files": [
+    "install.js",
+    "precommit.js"
+  ]
 }
