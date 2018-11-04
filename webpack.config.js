@@ -1,7 +1,10 @@
+const { spawn } = require('child_process');
+
 module.exports = {
   entry: {
     install: './src/install.ts',
-    precommit: './src/precommit.ts'
+    precommit: './src/precommit.ts',
+    tests: './test/run-tests.ts'
   },
   module: {
     rules: [
@@ -20,5 +23,14 @@ module.exports = {
     filename: '[name].js',
     path: __dirname
   },
-  target: 'node'
+  target: 'node',
+  plugins: [
+    {
+      apply: compiler => {
+        compiler.hooks.afterCompile.tap('jest', compilation => {
+          spawn('npm', ['test'], {stdio:'inherit'});
+        });
+      }
+    }
+  ]
 };
