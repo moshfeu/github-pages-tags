@@ -1,18 +1,23 @@
 import { file } from 'find';
+import { join } from 'path';
 import { readFileSync, existsSync, mkdirSync, writeFileSync } from 'fs';
 import { exec } from 'child_process';
-let pj: {title?: string, description?: string};
+let config: IConfig;
 
 try {
-  pj = eval('require')('../../github-pages-tags.config');
+  const configStr = readFileSync('github-pages-tags.config.json', {
+    encoding: 'utf8'
+  });
+  config = JSON.parse(configStr);
 } catch (error) {
-  pj = {};
+  console.log('errpr', error);
+  config = {};
 }
 
 const tagsDir = './tags';
 const template = `---
-title: ${pj.title || '{{tag}}'}
-description: ${pj.description || 'Here are all the posts that related to {{tag}}'}
+title: ${config.title || '{{tag}}'}
+description: ${config.description || 'Here are all the posts that related to {{tag}}'}
 layout: tag
 permalink: /tags/{{tag}}/
 ---
@@ -24,9 +29,20 @@ interface IFile {
   tags?: string[];
 }
 
+interface ITagMetaData {
+  [key: string]: number;
+}
+
+export interface IConfig {
+  title?: string;
+  description?: string;
+  minPostCount?: number;
+}
+
 getMdFiles().
   then(readFiles).
   then(exrtactTags).
+  then(excludeTagsWithLowerCount).
   then(createTagsFiles).
   then(runGitAdd).
   then(status => console.log('done 👍', status)).
@@ -62,13 +78,23 @@ function exrtactTagsFromFile(file: IFile): string[] {
   return [];
 }
 
-function exrtactTags(filesWithContent: IFile[]): string[] {
-  return filesWithContent.reduce((tags: string[], file: IFile) => {
-    tags.push(
-      ...exrtactTagsFromFile(file).filter(tag => tags.indexOf(tag) === -1)
-    );
-    return tags;
-  }, []);
+// exclude tags that not reached the required amount
+function excludeTagsWithLowerCount(tagsMetaData: ITagMetaData): string[] {
+  return Object
+    .keys(tagsMetaData)
+    .filter(key => tagsMetaData[key] > (config.minPostCount || 0));
+}
+
+function exrtactTags(filesWithContent: IFile[]): ITagMetaData {
+  return filesWithContent.reduce((tagsMetaData: ITagMetaData, file: IFile) => {
+    exrtactTagsFromFile(file).forEach(tag => {
+      if (!tagsMetaData[tag]) {
+        tagsMetaData[tag] = 0;
+      }
+      tagsMetaData[tag]++;
+    });
+    return tagsMetaData;
+  }, {});
 }
 
 function createTagsFiles(tags: string[]): boolean {
