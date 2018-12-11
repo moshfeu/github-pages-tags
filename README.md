@@ -49,7 +49,7 @@ layout: default
 
 You can custom the plugin behavior by creating ~~`github-pages-tags.config.js`~~ `github-pages-tags.config.json`.
 
-Here is the options:
+Here are the options:
 
 ```js
 {
